@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+
+  /* Deep midnight navy system — layered shades create depth instead of one flat dark tone */
+  --color-bg: #0a0f1c;
+  --color-bg-alt: #0d1424;
+  --color-surface: #131b30;
+  --color-surface-alt: #182140;
+  --color-line: #232c46;
+  --color-line-soft: #1a2238;
+
+  /* Emerald — money, growth, primary action */
+  --color-primary: #10b981;
+  --color-primary-hover: #34d399;
+  --color-primary-dim: #0b7a56;
+  --color-primary-tint: #0f2a24;
+
+  /* Indigo/electric blue — secondary accent only */
+  --color-accent: #6366f1;
+  --color-accent-tint: #191c3a;
+  --color-accent-2: #3b82f6;
+
+  --color-ink: #e7ebf3;
+  --color-slate: #8b95ac;
+  --color-mist: #5b6480;
+
+  --color-success: #10b981;
+  --color-warning: #f5a524;
+  --color-danger: #f5716b;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
