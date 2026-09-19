@@ -8,6 +8,7 @@ import Checkbox from '../common/CheckBox';
 import Button from '../common/Button';
 import AuthError from './AuthError';
 import { IconMail, IconUser } from '../Icons';
+import { useAuth } from '../../hooks/useAuth';
 
 interface FormErrors {
   name?: string;
@@ -21,6 +22,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function RegisterForm() {
   const navigate = useNavigate();
+  const { register } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,16 +46,23 @@ export default function RegisterForm() {
     return Object.keys(next).length === 0;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setFormError(null);
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Frontend-only for now — wire this to authService.register once the backend is ready.
-    setTimeout(() => {
-      setIsSubmitting(false);
-      navigate('/dashboard');
+    // Frontend-only for now — AuthProvider.register simulates a session; swap
+    // it for a real authService.register call once the backend is ready.
+    setTimeout(async () => {
+      try {
+        await register(name, email, password);
+        navigate('/dashboard');
+      } catch {
+        setFormError('Something went wrong creating your account. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }, 1200);
   }
 

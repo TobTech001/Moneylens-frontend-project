@@ -11,7 +11,7 @@ export default function Sidebar() {
     <aside className="hidden h-screen w-64 shrink-0 flex-col border-r border-line bg-bg-alt lg:flex">
       <div className="flex h-16 items-center gap-2 px-6">
         <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent text-sm">
-          💰
+          M
         </span>
         <span className="font-display text-lg font-semibold tracking-tight text-ink">MoneyLens</span>
       </div>

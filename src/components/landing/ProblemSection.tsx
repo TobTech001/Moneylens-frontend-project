@@ -21,7 +21,7 @@ export default function ProblemSection() {
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-danger">
-              <span>❌</span> Confusing transaction alerts
+              <span></span> Confusing transaction alerts
             </p>
             <div className="space-y-3">
               {ALERTS.map((a) => (
@@ -38,7 +38,7 @@ export default function ProblemSection() {
 
           <div>
             <p className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-primary">
-              <span>✅</span> Clear spending categories
+              <span></span> Clear spending categories
             </p>
             <div className="rounded-xl border border-primary/25 bg-surface p-5 shadow-[0_0_40px_-20px_var(--color-primary)]">
               <div className="space-y-3">

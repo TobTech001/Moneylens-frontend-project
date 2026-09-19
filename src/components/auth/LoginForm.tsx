@@ -6,6 +6,7 @@ import Checkbox from '../common/CheckBox';
 import Button from '../common/Button';
 import AuthError from './AuthError';
 import { IconMail } from '../Icons';
+import { useAuth } from '../../hooks/useAuth';
 
 interface FormErrors {
   email?: string;
@@ -16,6 +17,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -32,16 +34,23 @@ export default function LoginForm() {
     return Object.keys(next).length === 0;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setFormError(null);
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Frontend-only for now — wire this to authService.login once the backend is ready.
-    setTimeout(() => {
-      setIsSubmitting(false);
-      navigate('/dashboard');
+    // Frontend-only for now — AuthProvider.login simulates a session; swap it
+    // for a real authService.login call once the backend is ready.
+    setTimeout(async () => {
+      try {
+        await login(email, password);
+        navigate('/dashboard');
+      } catch {
+        setFormError('Please check your email and password and try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }, 1200);
   }
 
