@@ -18,8 +18,8 @@ export default function TransactionSummary({ transactions, isLoading }: Transact
   const cards = [
     { label: 'Total Income', value: totalIncome, icon: '💰', tone: 'primary' as const },
     { label: 'Total Expenses', value: totalExpenses, icon: '💸', tone: 'danger' as const },
-    { label: 'Money In', value: totalIncome, icon: '↗️', tone: 'primary' as const, signed: '+' as const },
-    { label: 'Money Out', value: totalExpenses, icon: '↘️', tone: 'danger' as const, signed: '-' as const },
+    { label: 'Money In', value: totalIncome, icon: '↘️', tone: 'primary' as const, signed: '+' as const },
+    { label: 'Money Out', value: totalExpenses, icon: '↗️', tone: 'danger' as const, signed: '-' as const },
   ];
 
   if (isLoading) {

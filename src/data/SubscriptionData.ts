@@ -1,0 +1,113 @@
+import type { Subscription, SubscriptionCategory } from '../types/subscription';
+
+export const CATEGORY_ICONS: Record<SubscriptionCategory, string> = {
+  Entertainment: '🎬',
+  Productivity: '🧩',
+  Education: '🎓',
+  'Cloud & Software': '☁️',
+  Health: '🩺',
+  News: '📰',
+  Other: '📦',
+};
+
+// A realistic mix covering every status and category. Named services and
+// their exact amounts/dates match the brief (Netflix, Spotify, Canva Pro,
+// Google One, Coursera); a few more are added for status/filter variety —
+// see SubscriptionSummary.tsx for why the totals don't force-match the
+// brief's standalone example numbers, which aren't internally consistent
+// (section 6 and section 18 give two different figures for Entertainment).
+export const MOCK_SUBSCRIPTIONS: Subscription[] = [
+  {
+    id: 'sub-netflix',
+    serviceName: 'Netflix',
+    category: 'Entertainment',
+    amount: 6000,
+    frequency: 'monthly',
+    nextPaymentDate: '2026-09-25',
+    status: 'active',
+    note: 'Family entertainment subscription.',
+    createdAt: '2026-01-10',
+  },
+  {
+    id: 'sub-spotify',
+    serviceName: 'Spotify',
+    category: 'Entertainment',
+    amount: 3500,
+    frequency: 'monthly',
+    nextPaymentDate: '2026-09-27',
+    status: 'active',
+    createdAt: '2026-02-03',
+  },
+  {
+    id: 'sub-canva',
+    serviceName: 'Canva Pro',
+    category: 'Productivity',
+    amount: 4500,
+    frequency: 'monthly',
+    nextPaymentDate: '2026-10-02',
+    status: 'active',
+    createdAt: '2026-03-15',
+  },
+  {
+    id: 'sub-googleone',
+    serviceName: 'Google One',
+    category: 'Cloud & Software',
+    amount: 2000,
+    frequency: 'monthly',
+    nextPaymentDate: '2026-09-30',
+    status: 'active',
+    createdAt: '2025-11-20',
+  },
+  {
+    id: 'sub-coursera',
+    serviceName: 'Coursera',
+    category: 'Education',
+    amount: 3000,
+    frequency: 'monthly',
+    nextPaymentDate: '2026-10-05',
+    status: 'active',
+    note: 'Data analytics specialization.',
+    createdAt: '2026-06-01',
+  },
+  {
+    id: 'sub-primevideo',
+    serviceName: 'Prime Video',
+    category: 'Entertainment',
+    amount: 3000,
+    frequency: 'monthly',
+    nextPaymentDate: '2026-10-10',
+    status: 'active',
+    createdAt: '2026-04-12',
+  },
+  {
+    id: 'sub-dstv',
+    serviceName: 'DSTV',
+    category: 'Entertainment',
+    amount: 9000,
+    frequency: 'monthly',
+    nextPaymentDate: '2026-09-22',
+    status: 'paused',
+    note: 'Paused while traveling.',
+    createdAt: '2025-08-05',
+  },
+  {
+    id: 'sub-applemusic',
+    serviceName: 'Apple Music',
+    category: 'Entertainment',
+    amount: 3500,
+    frequency: 'monthly',
+    nextPaymentDate: '2026-09-18',
+    status: 'payment-failed',
+    createdAt: '2025-12-01',
+  },
+  {
+    id: 'sub-grammarly',
+    serviceName: 'Grammarly',
+    category: 'Productivity',
+    amount: 4000,
+    frequency: 'monthly',
+    nextPaymentDate: '2026-08-15',
+    status: 'cancelled',
+    createdAt: '2025-05-22',
+  },
+];

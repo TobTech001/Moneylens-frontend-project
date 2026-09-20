@@ -51,7 +51,7 @@ export default function LoginForm() {
       } finally {
         setIsSubmitting(false);
       }
-    }, 1200);
+    }, 5000);
   }
 
   return (
