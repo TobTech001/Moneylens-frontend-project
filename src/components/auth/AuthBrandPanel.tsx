@@ -19,7 +19,7 @@ export default function AuthBrandPanel({ headline, subtext }: AuthBrandPanelProp
 
       <a href="/" className="relative flex items-center gap-2">
         <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent text-sm">
-          💰
+          M
         </span>
         <span className="font-display text-lg font-semibold tracking-tight text-ink">MoneyLens</span>
       </a>
