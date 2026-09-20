@@ -50,13 +50,7 @@ export default function Topbar({ title, onOpenMenu }: TopbarProps) {
       </div>
 
       <div className="flex items-center gap-2 sm:gap-3">
-        <button
-          type="button"
-          aria-label="Search"
-          className="grid h-9 w-9 place-items-center rounded-md text-slate transition-colors hover:bg-surface hover:text-ink"
-        >
-          <IconSearch className="h-[18px] w-[18px]" />
-        </button>
+       
 
         <div className="relative" ref={notifRef}>
           <button

@@ -4,6 +4,7 @@ import { IconChevronDown } from '../Icons';
 interface SelectOption {
   label: string;
   value: string;
+  disabled?: boolean;
 }
 
 interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'children'> {
@@ -31,7 +32,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(({ label, options, err
           {...rest}
         >
           {options.map((opt) => (
-            <option key={opt.value} value={opt.value}>
+            <option key={opt.value} value={opt.value} disabled={opt.disabled}>
               {opt.label}
             </option>
           ))}

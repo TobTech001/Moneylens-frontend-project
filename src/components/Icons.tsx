@@ -300,3 +300,36 @@ export function IconUserCircle(props: IconProps) {
     </svg>
   );
 }
+
+/* ---------- settings-page icons ---------- */
+
+export function IconPalette(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3.5a8.5 8.5 0 1 0 0 17c1 0 1.6-.7 1.6-1.5 0-.4-.15-.75-.4-1a1.4 1.4 0 0 1-.4-1c0-.8.65-1.4 1.4-1.4h1.6a4 4 0 0 0 4-4c0-4.2-3.9-7.6-8-7.6Z" />
+      <circle cx="7.5" cy="11" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="10" cy="7.5" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="15" cy="7.5" r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="17" cy="11.5" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function IconShield(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3.5 19.5 6.5V11c0 5-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.5-7.5-9.5V6.5L12 3.5Z" />
+      <path d="M9 12l2.2 2.2L15.5 9.7" />
+    </svg>
+  );
+}
+
+export function IconDatabase(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <ellipse cx="12" cy="6" rx="7.5" ry="2.8" />
+      <path d="M4.5 6v12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V6" />
+      <path d="M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8" />
+    </svg>
+  );
+}
