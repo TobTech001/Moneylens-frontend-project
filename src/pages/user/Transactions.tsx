@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import Card from '../../components/common/Card';
 import Skeleton from '../../components/common/Skeleton';
@@ -8,7 +9,7 @@ import Toast from '../../components/common/Toast';
 import TransactionSummary from '../../components/transactions/TransactionSummary';
 import TransactionToolbar from '../../components/transactions/TransactionToolbar';
 import TransactionTable from '../../components/transactions/TransactionTable';
-import TransactionCard from '../../components/transactions/TransactionMenu';
+import TransactionCard from '../../components/transactions/TransactionCard';
 import TransactionDetails from '../../components/transactions/TransactionDetails';
 import AddTransactionModal from '../../components/transactions/AddTransactionModal';
 import ImportTransactions from '../../components/transactions/ImportTransactions';
@@ -49,6 +50,7 @@ function matchesDateFilter(dateISO: string, filter: DateFilter, customDate: stri
 }
 
 export default function Transactions() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -64,6 +66,18 @@ export default function Transactions() {
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
   const [deletingTransaction, setDeletingTransaction] = useState<Transaction | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (searchParams.get('add') === '1') {
+      setIsAddModalOpen(true);
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev);
+        next.delete('add');
+        return next;
+      }, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -243,9 +257,7 @@ export default function Transactions() {
         <>
           <TransactionTable
             transactions={visibleTransactions}
-            onView={(transaction?: Transaction) => {
-              if (transaction) setViewingTransaction(transaction);
-            }}
+            onView={setViewingTransaction}
             onEdit={(t) => {
               setEditingTransaction(t);
               setIsAddModalOpen(true);
@@ -257,14 +269,13 @@ export default function Transactions() {
             {visibleTransactions.map((t) => (
               <TransactionCard
                 key={t.id}
-                onView={(transaction?: Transaction) => {
-                  if (transaction) setViewingTransaction(transaction);
-                }}
-                onEdit={() => {
-                  setEditingTransaction(t);
+                transaction={t}
+                onView={setViewingTransaction}
+                onEdit={(tx) => {
+                  setEditingTransaction(tx);
                   setIsAddModalOpen(true);
                 }}
-                onDelete={() => setDeletingTransaction(t)}
+                onDelete={setDeletingTransaction}
               />
             ))}
           </div>
@@ -287,7 +298,7 @@ export default function Transactions() {
           setEditingTransaction(t);
           setIsAddModalOpen(true);
         }}
-        onDelete={(t: Transaction) => {
+        onDelete={(t) => {
           setViewingTransaction(null);
           setDeletingTransaction(t);
         }}

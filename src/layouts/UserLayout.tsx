@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from '../components/dashboard/Sidebar';
-import MobileSidebar from '../components/dashboard/MobileSideBar';
+import MobileSidebar from '../components/dashboard/MobileSidebar';
 import MobileBottomNav from '../components/dashboard/MobileBottomNav';
 import Topbar from '../components/dashboard/Topbar';
 
@@ -33,7 +33,7 @@ export default function UserLayout() {
         </main>
       </div>
 
-      <MobileBottomNav onOpenMenu={() => setMobileMenuOpen(true)} />
+      <MobileBottomNav />
     </div>
   );
 }

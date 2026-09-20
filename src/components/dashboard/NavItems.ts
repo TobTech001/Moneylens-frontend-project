@@ -39,10 +39,11 @@ export const NAV_GROUPS: NavGroup[] = [
   },
 ];
 
-// Most important pages for the mobile bottom nav (keep to 4 + a menu trigger).
+// Most important pages for the mobile bottom nav.
 export const MOBILE_PRIMARY_NAV: NavItem[] = [
   { label: 'Dashboard', href: '/dashboard', icon: IconGrid },
   { label: 'Transactions', href: '/transactions', icon: IconReceipt },
   { label: 'Analytics', href: '/analytics', icon: IconChart },
   { label: 'Budget', href: '/budget', icon: IconTarget },
+  { label: 'Borrow & Lend', href: '/borrow-lend', icon: IconHandshake },
 ];
