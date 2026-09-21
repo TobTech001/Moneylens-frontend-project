@@ -1,109 +1,71 @@
+import { useEffect, useState } from 'react';
 import Container from './Container';
-import { IconAlert, IconTarget } from '../Icons';
+import Reveal from './Reveal';
+import Counter from './Counter';
+import { ROTATING_INSIGHTS, INSIGHT_CARDS } from '../../data/LandingPageData';
 
-const INSIGHTS = [
-  {
-    icon: '🍔',
-    label: 'Food spending',
-    value: '₦47,500',
-    detail: 'spent on food this month',
-    accent: 'primary' as const,
-  },
-  {
-    icon: IconAlert,
-    label: 'Spending increase',
-    value: '+32%',
-    detail: 'compared to last month',
-    accent: 'warning' as const,
-  },
-  {
-    icon: '🚗',
-    label: 'Transport',
-    value: '2nd',
-    detail: 'highest spending category',
-    accent: 'accent' as const,
-  },
-  {
-    icon: IconTarget,
-    label: 'Budget warning',
-    value: '91%',
-    detail: 'of your food budget used',
-    accent: 'warning' as const,
-  },
-];
-
-const TREND = [30, 45, 38, 55, 42, 60, 52, 70, 48, 62, 44, 68];
-
-const accentClasses = {
-  primary: 'border-primary/25 bg-primary-tint text-primary',
+const TONE_CLASSES = {
   warning: 'border-warning/25 bg-warning/10 text-warning',
+  primary: 'border-primary/25 bg-primary-tint text-primary',
   accent: 'border-accent/25 bg-accent-tint text-accent',
 };
+
+function RotatingInsight() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => setIndex((i) => (i + 1) % ROTATING_INSIGHTS.length), 3200);
+    return () => clearInterval(timer);
+  }, []);
+
+  const current = ROTATING_INSIGHTS[index];
+
+  return (
+    <div className="mx-auto flex h-14 max-w-lg items-center justify-center rounded-full border border-line bg-surface px-6">
+      <p
+        key={index}
+        className={`animate-[fadeIn_0.5s_ease-out] px-6 text-center text-sm font-medium ${
+          current.tone === 'warning' ? 'text-warning' : 'text-primary'
+        }`}
+      >
+        {current.text}
+      </p>
+    </div>
+  );
+}
 
 export default function FinancialInsights() {
   return (
     <section id="insights" className="py-20 sm:py-28">
       <Container>
-        <h2 className="max-w-xl font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-          Your money has a story. MoneyLens helps you read it.
-        </h2>
+        <Reveal className="text-center">
+          <p className="text-xs font-medium uppercase tracking-wide text-primary">Live from MoneyLens</p>
+          <h2 className="mx-auto mt-3 max-w-xl font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+            Turn Your Transactions Into Insights.
+          </h2>
+        </Reveal>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <div className="grid grid-cols-2 gap-4">
-            {INSIGHTS.map((insight, i) => (
-              <div
-                key={insight.label}
-                className={`rounded-2xl border border-line bg-surface p-5 ${i % 3 === 1 ? 'lg:translate-y-6' : ''}`}
-              >
-                <span className={`grid h-9 w-9 place-items-center rounded-lg border text-sm ${accentClasses[insight.accent]}`}>
-                  {typeof insight.icon === 'string' ? insight.icon : <insight.icon className="h-4 w-4" />}
+        <Reveal variant="scale-in" delay={100} className="mt-10">
+          <RotatingInsight />
+        </Reveal>
+
+        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          {INSIGHT_CARDS.map((card, i) => (
+            <Reveal key={card.title} delay={i * 120}>
+              <div className="h-full rounded-2xl border border-line bg-surface p-6">
+                <span className={`grid h-10 w-10 place-items-center rounded-xl border text-lg ${TONE_CLASSES[card.tone]}`}>
+                  {card.icon}
                 </span>
-                <p className="mt-3 font-display text-2xl font-semibold text-ink">{insight.value}</p>
-                <p className="mt-1 text-xs leading-relaxed text-slate">{insight.detail}</p>
+                <p className="mt-4 text-sm text-slate">{card.title}</p>
+                <p className="mt-1 font-display text-2xl font-semibold text-ink">
+                  <Counter target={card.amount} prefix="₦" />
+                </p>
+                <p className={`mt-1.5 text-xs font-medium ${card.tone === 'warning' ? 'text-warning' : card.tone === 'accent' ? 'text-accent' : 'text-primary'}`}>
+                  {card.change}
+                </p>
               </div>
-            ))}
-          </div>
-
-          <div className="rounded-2xl border border-line bg-surface p-5 sm:p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs text-slate">Spending trend</p>
-                <p className="font-display text-2xl font-semibold text-ink">₦120,000</p>
-              </div>
-              <span className="rounded-full border border-warning/25 bg-warning/10 px-2.5 py-1 text-xs font-medium text-warning">
-                +32%
-              </span>
-            </div>
-
-            <svg viewBox="0 0 300 100" className="mt-6 h-32 w-full overflow-visible" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <polygon
-                fill="url(#trendFill)"
-                points={`0,100 ${TREND.map((v, i) => `${(i / (TREND.length - 1)) * 300},${100 - v}`).join(' ')} 300,100`}
-              />
-              <polyline
-                fill="none"
-                stroke="var(--color-primary)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                points={TREND.map((v, i) => `${(i / (TREND.length - 1)) * 300},${100 - v}`).join(' ')}
-              />
-            </svg>
-
-            <div className="mt-4 flex justify-between text-[11px] text-mist">
-              <span>Jan</span>
-              <span>Apr</span>
-              <span>Jul</span>
-              <span>Oct</span>
-              <span>Dec</span>
-            </div>
-          </div>
+            </Reveal>
+          ))}
         </div>
       </Container>
     </section>

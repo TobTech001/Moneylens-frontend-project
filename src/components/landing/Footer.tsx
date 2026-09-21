@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent text-xs">
-                M
+                💰
               </span>
               <span className="font-display text-base font-semibold text-ink">MoneyLens</span>
             </div>
