@@ -1,7 +1,7 @@
 import Container from './Container';
 import Reveal from './Reveal';
 import { BENEFITS } from '../../data/LandingPageData';
-import { IconEye, IconTarget, IconShield, IconBell, IconBulb, IconChart } from '../icons';
+import { IconEye, IconTarget, IconShield, IconBell, IconBulb, IconChart } from '../Icons';
 
 const ICONS = { eye: IconEye, target: IconTarget, shield: IconShield, bell: IconBell, bulb: IconBulb, chart: IconChart };
 

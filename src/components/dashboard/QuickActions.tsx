@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { IconPlus, IconTarget, IconBell } from '../Icons';
+import { IconPlus, IconTarget, IconBell } from '../icons';
 
 const ACTIONS = [
   { label: 'Add Transaction', icon: IconPlus, primary: true, href: '/transactions?add=1' },
@@ -18,9 +18,9 @@ export default function QuickActions() {
           type="button"
           title={label}
           onClick={() => navigate(href)}
-          className={`inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+          className={`inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${
             primary
-              ? 'bg-primary text-bg shadow-[0_0_20px_-8px_var(--color-primary)] hover:bg-primary-hover'
+              ? 'bg-primary text-bg shadow-[0_0_20px_-8px_var(--color-primary)] hover:bg-primary-hover hover:shadow-[0_0_28px_-6px_var(--color-primary)]'
               : 'border border-line bg-surface text-ink hover:border-primary/30 hover:bg-surface-alt'
           }`}
         >

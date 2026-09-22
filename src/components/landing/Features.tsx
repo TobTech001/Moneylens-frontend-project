@@ -1,6 +1,6 @@
 import Container from './Container';
 import FeatureCard from './FeatureCard';
-import Reveal from './Reveal';
+import Reveal from '../common/Reveal';
 import { FEATURES } from '../../data/LandingPageData';
 
 export default function Features() {

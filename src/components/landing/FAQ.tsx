@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Container from './Container';
-import Reveal from './Reveal';
+import Reveal from '../common/Reveal';
 import { FAQ_ITEMS } from '../../data/LandingPageData';
-import { IconPlus } from '../icons';
+import { IconPlus } from '../Icons';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

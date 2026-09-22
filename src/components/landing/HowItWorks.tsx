@@ -1,7 +1,7 @@
 import Container from './Container';
-import Reveal from './Reveal';
+import Reveal from '../common/Reveal';
 import { HOW_IT_WORKS_STEPS } from '../../data/LandingPageData';
-import { IconUpload, IconLayers, IconEye } from '../icons';
+import { IconUpload, IconLayers, IconEye } from '../Icons';
 
 const ICONS = [IconUpload, IconLayers, IconEye];
 

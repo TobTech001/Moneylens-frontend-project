@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Container from './Container';
-import Reveal from './Reveal';
+import Reveal from '../common/Reveal';
 import { DASHBOARD_TABS, ANALYTICS_CATEGORIES, type DashboardTab } from '../../data/LandingPageData';
-import { IconCheck } from '../icons';
+import { IconCheck } from '../Icons';
 
 const OVERVIEW_TRANSACTIONS = [
   { name: 'Chicken Republic', category: 'Food', amount: '-₦4,500' },

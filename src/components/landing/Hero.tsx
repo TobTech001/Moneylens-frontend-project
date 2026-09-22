@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Container from './Container';
 import HeroDashboard from './HeroDashboard';
 import SocialProof from './SocialProof';
-import Reveal from './Reveal';
-import { IconArrowRight } from '../icons';
+import Reveal from '../common/Reveal';
+import { IconArrowRight } from '../Icons';
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);

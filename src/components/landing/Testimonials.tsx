@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Container from './Container';
-import Reveal from './Reveal';
+import Reveal from '../common/Reveal';
 import { TESTIMONIALS } from '../../data/LandingPageData';
-import { IconArrowRight } from '../icons';
+import { IconArrowRight } from '../Icons';
 
 export default function Testimonials() {
   const [index, setIndex] = useState(0);

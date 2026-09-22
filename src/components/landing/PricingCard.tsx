@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Reveal from './Reveal';
-import { IconCheck } from '../icons';
+import Reveal from '../common/Reveal';
+import { IconCheck } from '../Icons';
 import type { BillingPeriod, PRICING_PLANS } from '../../data/LandingPageData';
 
 type Plan = (typeof PRICING_PLANS)[number];

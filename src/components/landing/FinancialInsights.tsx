@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Container from './Container';
-import Reveal from './Reveal';
-import Counter from './Counter';
+import Reveal from '../common/Reveal';
+import Counter from '../common/Counter';
 import { ROTATING_INSIGHTS, INSIGHT_CARDS } from '../../data/LandingPageData';
 
 const TONE_CLASSES = {

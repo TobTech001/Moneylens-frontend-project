@@ -1,4 +1,4 @@
-import { IconAlert } from '../icons';
+import { IconAlert } from '../Icons';
 
 const TRANSACTIONS = [
   { name: 'Chicken Republic', category: 'Food', amount: '-₦4,500' },

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Container from './Container';
-import Reveal from './Reveal';
+import Reveal from '../common/Reveal';
 import PricingCard from './PricingCard';
 import { PRICING_PLANS, type BillingPeriod } from '../../data/LandingPageData';
 

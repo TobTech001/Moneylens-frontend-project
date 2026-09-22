@@ -4,10 +4,10 @@ import Input from '../common/Input';
 import PasswordInput from './PasswordInput';
 import PasswordStrength from './PasswordStrength';
 import PasswordRequirements, { passwordMeetsAllRequirements } from './PasswordRequirements';
-import Checkbox from '../common/CheckBox';
+import Checkbox from '../common/Checkbox';
 import Button from '../common/Button';
 import AuthError from './AuthError';
-import { IconMail, IconUser } from '../Icons';
+import { IconMail, IconUser, IconArrowRight } from '../icons';
 import { useAuth } from '../../hooks/useAuth';
 
 interface FormErrors {
@@ -138,8 +138,15 @@ export default function RegisterForm() {
         error={errors.terms}
       />
 
-      <Button type="submit" fullWidth isLoading={isSubmitting} loadingText="Creating your account...">
+      <Button
+        type="submit"
+        fullWidth
+        isLoading={isSubmitting}
+        loadingText="Creating your account..."
+        className="group transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+      >
         Create Account
+        <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </Button>
     </form>
   );

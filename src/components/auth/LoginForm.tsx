@@ -5,7 +5,7 @@ import PasswordInput from './PasswordInput';
 import Checkbox from '../common/CheckBox';
 import Button from '../common/Button';
 import AuthError from './AuthError';
-import { IconMail } from '../Icons';
+import { IconMail, IconArrowRight } from '../Icons';
 import { useAuth } from '../../hooks/useAuth';
 
 interface FormErrors {
@@ -51,7 +51,7 @@ export default function LoginForm() {
       } finally {
         setIsSubmitting(false);
       }
-    }, 5000);
+    }, 1200);
   }
 
   return (
@@ -93,8 +93,15 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <Button type="submit" fullWidth isLoading={isSubmitting} loadingText="Logging in...">
+      <Button
+        type="submit"
+        fullWidth
+        isLoading={isSubmitting}
+        loadingText="Logging in..."
+        className="group transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+      >
         Log In
+        <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </Button>
     </form>
   );

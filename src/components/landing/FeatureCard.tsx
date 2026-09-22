@@ -1,5 +1,5 @@
-import { IconCard, IconChart, IconTarget, IconHandshake, IconBell, IconBulb, IconArrowRight } from '../icons';
-import Reveal from './Reveal';
+import { IconCard, IconChart, IconTarget, IconHandshake, IconBell, IconBulb, IconArrowRight } from '../Icons';
+import Reveal from '../common/Reveal';
 
 const ICONS = { card: IconCard, chart: IconChart, target: IconTarget, handshake: IconHandshake, bell: IconBell, bulb: IconBulb };
 

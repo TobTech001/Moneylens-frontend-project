@@ -1,5 +1,5 @@
 import Container from './Container';
-import Reveal from './Reveal';
+import Reveal from '../common/Reveal';
 import { useInView } from '../../hooks/useInView';
 import { ANALYTICS_TREND, ANALYTICS_CATEGORIES } from '../../data/LandingPageData';
 

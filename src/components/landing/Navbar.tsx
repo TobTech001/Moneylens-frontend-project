@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Container from './Container';
 import MobileMenu from './MobileMenu';
-import { IconMenu, IconClose } from '../icons';
+import { IconMenu, IconClose } from '../Icons';
 import { NAV_LINKS } from '../../data/LandingPageData';
 
 export default function Navbar() {
