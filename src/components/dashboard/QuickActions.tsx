@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { IconPlus, IconTarget, IconBell } from '../icons';
+import { IconPlus, IconTarget, IconBell } from '../Icons';
 
 const ACTIONS = [
   { label: 'Add Transaction', icon: IconPlus, primary: true, href: '/transactions?add=1' },

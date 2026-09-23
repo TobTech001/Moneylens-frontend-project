@@ -4,10 +4,10 @@ import Input from '../common/Input';
 import PasswordInput from './PasswordInput';
 import PasswordStrength from './PasswordStrength';
 import PasswordRequirements, { passwordMeetsAllRequirements } from './PasswordRequirements';
-import Checkbox from '../common/Checkbox';
+import Checkbox from '../common/CheckBox';
 import Button from '../common/Button';
 import AuthError from './AuthError';
-import { IconMail, IconUser, IconArrowRight } from '../icons';
+import { IconMail, IconUser, IconArrowRight } from '../Icons';
 import { useAuth } from '../../hooks/useAuth';
 
 interface FormErrors {

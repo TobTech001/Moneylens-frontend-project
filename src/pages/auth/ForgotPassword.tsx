@@ -6,10 +6,20 @@ import AuthHeader from '../../components/auth/AuthHeader';
 import ForgotPasswordForm from '../../components/auth/ForgotPasswordForm';
 import AuthSuccess from '../../components/auth/AuthSuccess';
 import { IconArrowLeft } from '../../components/Icons';
+import { generateOtp, storeOtp } from '../../utils/otp';
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
-  const [submitted, setSubmitted] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
+  const [demoCode, setDemoCode] = useState<string | null>(null);
+
+  function handleSubmitted(email: string) {
+    // Frontend-only simulation — generates a code instead of actually emailing one.
+    const code = generateOtp();
+    storeOtp(email, code);
+    setSubmittedEmail(email);
+    setDemoCode(code);
+  }
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-bg px-5 py-12">
@@ -36,19 +46,24 @@ export default function ForgotPassword() {
 
       <div className="w-full max-w-sm">
         <AuthCard>
-          {submitted ? (
+          {submittedEmail ? (
             <AuthSuccess
               icon="📩"
               title="Check your email"
-              message="If an account exists with this email address, password reset instructions have been sent."
-              primaryLabel="Back to Login"
-              onPrimary={() => navigate('/login')}
+              message={`We've sent a 6-digit verification code to ${submittedEmail}.${
+                demoCode ? ` (Demo mode — your code is ${demoCode})` : ''
+              }`}
+              primaryLabel="Enter Verification Code"
+              onPrimary={() => navigate(`/verify-otp?email=${encodeURIComponent(submittedEmail)}`)}
               secondary={
                 <>
-                  Didn't receive anything?{' '}
+                  Wrong email?{' '}
                   <button
                     type="button"
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => {
+                      setSubmittedEmail(null);
+                      setDemoCode(null);
+                    }}
                     className="font-medium text-primary hover:text-primary-hover"
                   >
                     Try again
@@ -63,7 +78,7 @@ export default function ForgotPassword() {
                 title="Forgot your password?"
                 subtext="Don't worry. Enter your email address and we'll help you reset your password."
               />
-              <ForgotPasswordForm onSuccess={() => setSubmitted(true)} />
+              <ForgotPasswordForm onSuccess={handleSubmitted} />
             </>
           )}
         </AuthCard>
