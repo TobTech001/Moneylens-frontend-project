@@ -333,3 +333,71 @@ export function IconDatabase(props: IconProps) {
     </svg>
   );
 }
+
+export function IconCamera(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 8.5a1.5 1.5 0 0 1 1.5-1.5h1.8l1-1.6a1.5 1.5 0 0 1 1.27-.7h4.86a1.5 1.5 0 0 1 1.27.7l1 1.6h1.8A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5v-9Z" />
+      <circle cx="12" cy="13" r="3.3" />
+    </svg>
+  );
+}
+
+/* ---------- landing redesign icons ---------- */
+
+export function IconStar(props: IconProps) {
+  return (
+    <svg {...base} fill="currentColor" stroke="none" {...props}>
+      <path d="M12 2.8 14.9 9l6.8.7-5.1 4.5 1.5 6.7L12 17.6 5.9 20.9l1.5-6.7L2.3 9.7 9.1 9 12 2.8Z" />
+    </svg>
+  );
+}
+
+export function IconChevronLeft(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M15 5 8 12l7 7" />
+    </svg>
+  );
+}
+
+export function IconChevronRight(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M9 5l7 7-7 7" />
+    </svg>
+  );
+}
+
+export function IconMinus(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4.5 12h15" />
+    </svg>
+  );
+}
+
+export function IconGithub(props: IconProps) {
+  return (
+    <svg {...base} fill="currentColor" stroke="none" {...props}>
+      <path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.65-.2.65-.5v-1.7c-2.65.6-3.2-1.2-3.2-1.2-.45-1.1-1.05-1.4-1.05-1.4-.85-.6.05-.55.05-.55.95.05 1.45 1 1.45 1 .85 1.4 2.2 1 2.75.75.1-.6.35-1 .6-1.25-2.1-.25-4.35-1.05-4.35-4.7 0-1.05.35-1.9 1-2.55-.1-.25-.45-1.25.1-2.55 0 0 .8-.25 2.65 1a9 9 0 0 1 4.8 0c1.85-1.25 2.65-1 2.65-1 .55 1.3.2 2.3.1 2.55.65.65 1 1.5 1 2.55 0 3.65-2.25 4.45-4.4 4.7.35.3.65.9.65 1.85v2.75c0 .3.15.6.65.5A9.5 9.5 0 0 0 12 2.5Z" />
+    </svg>
+  );
+}
+
+export function IconLinkedin(props: IconProps) {
+  return (
+    <svg {...base} fill="currentColor" stroke="none" {...props}>
+      <rect x="3" y="3" width="18" height="18" rx="2.5" />
+      <path d="M7.5 10v7M7.5 7.2v.1M11.5 17v-4a2 2 0 0 1 4 0v4M11.5 13v4" stroke="var(--color-surface, #131b30)" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconTwitterX(props: IconProps) {
+  return (
+    <svg {...base} fill="currentColor" stroke="none" {...props}>
+      <path d="M4 3.5h3.3l4 5.4 4.4-5.4h2.6l-5.7 7 6.1 8.5h-3.3l-4.4-6-4.9 6H3.5l6.1-7.5L4 3.5Z" />
+    </svg>
+  );
+}

@@ -4,7 +4,6 @@ import ErrorState from '../../components/common/ErrorState';
 import Toast from '../../components/common/Toast';
 import ProfileHeader from '../../components/profile/ProfileHeader';
 import PersonalInformation from '../../components/profile/PersonalInformation';
-import ProfilePicture from '../../components/profile/ProfilePicture';
 import EditProfileModal from '../../components/profile/EditProfileModal';
 import AccountInformation from '../../components/profile/AccountInformation';
 import FinancialProfile from '../../components/profile/FinancialProfile';
@@ -107,18 +106,17 @@ export default function Profile() {
         <p className="mt-1 text-sm text-slate">Manage your personal information and MoneyLens account.</p>
       </div>
 
-      <ProfileHeader profile={displayProfile} isLoading={isLoading} onEdit={() => setIsEditModalOpen(true)} />
+      <ProfileHeader
+        profile={displayProfile}
+        isLoading={isLoading}
+        onEdit={() => setIsEditModalOpen(true)}
+        onChangePhoto={handleChangePhoto}
+        onRemovePhoto={handleRemovePhoto}
+      />
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="space-y-6">
           <PersonalInformation profile={displayProfile} isLoading={isLoading} />
-          <ProfilePicture
-            firstName={displayProfile.firstName}
-            lastName={displayProfile.lastName}
-            avatar={displayProfile.avatar}
-            onChangePhoto={handleChangePhoto}
-            onRemovePhoto={handleRemovePhoto}
-          />
         </div>
 
         <div className="space-y-6">
