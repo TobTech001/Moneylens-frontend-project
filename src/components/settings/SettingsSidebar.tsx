@@ -1,4 +1,5 @@
-import { IconSettings, IconPalette, IconBell, IconShield, IconLock, IconTarget, IconDatabase, IconUserCircle } from '../Icons';
+import { NavLink } from 'react-router-dom';
+import { IconSettings, IconPalette, IconBell, IconShield, IconLock, IconTarget, IconDatabase, IconUserCircle } from '../icons';
 import type { SettingsSectionId } from '../../types/settings';
 
 const ICONS: Record<SettingsSectionId, typeof IconSettings> = {
@@ -14,30 +15,27 @@ const ICONS: Record<SettingsSectionId, typeof IconSettings> = {
 
 interface SettingsSidebarProps {
   sections: { id: SettingsSectionId; label: string }[];
-  active: SettingsSectionId;
-  onChange: (id: SettingsSectionId) => void;
 }
 
-export default function SettingsSidebar({ sections, active, onChange }: SettingsSidebarProps) {
+export default function SettingsSidebar({ sections }: SettingsSidebarProps) {
   return (
     <nav aria-label="Settings sections" className="hidden w-56 shrink-0 lg:block">
       <ul className="space-y-1">
         {sections.map((section) => {
           const Icon = ICONS[section.id];
-          const isActive = active === section.id;
           return (
             <li key={section.id}>
-              <button
-                type="button"
-                onClick={() => onChange(section.id)}
-                aria-current={isActive ? 'true' : undefined}
-                className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
-                  isActive ? 'border border-primary/25 bg-primary-tint text-primary' : 'text-slate hover:bg-surface-alt hover:text-ink'
-                }`}
+              <NavLink
+                to={`/settings/${section.id}`}
+                className={({ isActive }) =>
+                  `flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
+                    isActive ? 'border border-primary/25 bg-primary-tint text-primary' : 'text-slate hover:bg-surface-alt hover:text-ink'
+                  }`
+                }
               >
                 <Icon className="h-4 w-4 shrink-0" />
                 {section.label}
-              </button>
+              </NavLink>
             </li>
           );
         })}
