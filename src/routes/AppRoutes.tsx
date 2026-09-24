@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import LandingPage from '../pages/LandingPage';
 
@@ -18,6 +18,7 @@ import BorrowLend from '../pages/user/BorrowLend';
 import Subscriptions from '../pages/user/Subscriptions';
 import Profile from '../pages/user/Profile';
 import SettingsLayout from '../components/settings/SettingsLayout';
+import SettingsIndexPage from '../pages/user/settings/SettingsIndexPage';
 import GeneralSettingsPage from '../pages/user/settings/GeneralSettingsPage';
 import AppearanceSettingsPage from '../pages/user/settings/AppearanceSettingsPage';
 import NotificationSettingsPage from '../pages/user/settings/NotificationSettingsPage';
@@ -62,7 +63,7 @@ export default function AppRoutes() {
           <Route path="/subscriptions" element={<Subscriptions />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<SettingsLayout />}>
-            <Route index element={<Navigate to="general" replace />} />
+            <Route index element={<SettingsIndexPage />} />
             <Route path="general" element={<GeneralSettingsPage />} />
             <Route path="appearance" element={<AppearanceSettingsPage />} />
             <Route path="notifications" element={<NotificationSettingsPage />} />

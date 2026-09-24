@@ -1,17 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { IconSettings, IconPalette, IconBell, IconShield, IconLock, IconTarget, IconDatabase, IconUserCircle } from '../icons';
+import { SETTINGS_SECTION_ICONS } from './SettingsSectionIcons';
 import type { SettingsSectionId } from '../../types/settings';
-
-const ICONS: Record<SettingsSectionId, typeof IconSettings> = {
-  general: IconSettings,
-  appearance: IconPalette,
-  notifications: IconBell,
-  privacy: IconShield,
-  security: IconLock,
-  financial: IconTarget,
-  data: IconDatabase,
-  account: IconUserCircle,
-};
 
 interface SettingsSidebarProps {
   sections: { id: SettingsSectionId; label: string }[];
@@ -22,7 +11,7 @@ export default function SettingsSidebar({ sections }: SettingsSidebarProps) {
     <nav aria-label="Settings sections" className="hidden w-56 shrink-0 lg:block">
       <ul className="space-y-1">
         {sections.map((section) => {
-          const Icon = ICONS[section.id];
+          const Icon = SETTINGS_SECTION_ICONS[section.id];
           return (
             <li key={section.id}>
               <NavLink
