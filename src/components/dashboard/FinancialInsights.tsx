@@ -1,73 +1,66 @@
-import { useEffect, useState } from 'react';
-import Container from '../landing/Container';
-import Reveal from '../common/Reveal';
-import Counter from '../common/Counter';
-import { ROTATING_INSIGHTS, INSIGHT_CARDS } from '../../data/LandingPageData';
+import Card from '../common/Card';
 
-const TONE_CLASSES = {
-  warning: 'border-warning/25 bg-warning/10 text-warning',
-  primary: 'border-primary/25 bg-primary-tint text-primary',
-  accent: 'border-accent/25 bg-accent-tint text-accent',
+interface InsightTile {
+  id: string;
+  icon: string;
+  label: string;
+  amount: number;
+  note: string;
+  tone: 'warning' | 'accent' | 'primary';
+}
+
+// Frontend-only mock data — swap for real computed values once transactions
+// and subscriptions are wired to a backend.
+const HEADLINE = "Your food spending increased by 18% this month.";
+
+const TILES: InsightTile[] = [
+  { id: 'food', icon: '🍔', label: 'Food Spending', amount: 47500, note: '+32% from last month', tone: 'warning' },
+  { id: 'transport', icon: '🚗', label: 'Transport', amount: 25000, note: 'Your second highest category', tone: 'accent' },
+  { id: 'subscriptions', icon: '📺', label: 'Subscriptions', amount: 18500, note: '6 active subscriptions', tone: 'primary' },
+];
+
+const TONE_ICON_BOX: Record<InsightTile['tone'], string> = {
+  warning: 'border-warning/25 bg-warning/10',
+  accent: 'border-accent/25 bg-accent-tint',
+  primary: 'border-primary/25 bg-primary-tint',
 };
 
-function RotatingInsight() {
-  const [index, setIndex] = useState(0);
+const TONE_NOTE_TEXT: Record<InsightTile['tone'], string> = {
+  warning: 'text-warning',
+  accent: 'text-accent',
+  primary: 'text-primary',
+};
 
-  useEffect(() => {
-    const timer = setInterval(() => setIndex((i) => (i + 1) % ROTATING_INSIGHTS.length), 3200);
-    return () => clearInterval(timer);
-  }, []);
-
-  const current = ROTATING_INSIGHTS[index];
-
-  return (
-    <div className="mx-auto flex h-14 max-w-lg items-center justify-center rounded-full border border-line bg-surface px-6">
-      <p
-        key={index}
-        className={`animate-[fadeIn_0.5s_ease-out] px-6 text-center text-sm font-medium ${
-          current.tone === 'warning' ? 'text-warning' : 'text-primary'
-        }`}
-      >
-        {current.text}
-      </p>
-    </div>
-  );
+function formatNaira(n: number) {
+  return `₦${n.toLocaleString('en-NG')}`;
 }
 
 export default function FinancialInsights() {
   return (
-    <section id="insights" className="py-20 sm:py-28">
-      <Container>
-        <Reveal className="text-center">
-          <p className="text-xs font-medium uppercase tracking-wide text-primary">Live from MoneyLens</p>
-          <h2 className="mx-auto mt-3 max-w-xl font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-            Turn Your Transactions Into Insights.
-          </h2>
-        </Reveal>
+    <Card>
+      <h2 className="font-display text-lg font-semibold text-ink">💡 MoneyLens Insights</h2>
 
-        <Reveal variant="scale-in" delay={100} className="mt-10">
-          <RotatingInsight />
-        </Reveal>
+      {/* Headline banner — wraps naturally, never forces a fixed width */}
+      <div className="mt-4 rounded-xl border border-warning/25 bg-warning/10 px-4 py-3">
+        <p className="text-sm font-medium leading-relaxed text-warning">{HEADLINE}</p>
+      </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3">
-          {INSIGHT_CARDS.map((card, i) => (
-            <Reveal key={card.title} delay={i * 120}>
-              <div className="h-full rounded-2xl border border-line bg-surface p-6">
-                <span className={`grid h-10 w-10 place-items-center rounded-xl border text-lg ${TONE_CLASSES[card.tone]}`}>
-                  {card.icon}
-                </span>
-                <p className="mt-4 text-sm text-slate">{card.title}</p>
-                <p className="mt-1 font-display text-2xl font-semibold text-ink">
-                  <Counter target={card.amount} prefix="₦" />
-                </p>
-                <p className={`mt-1.5 text-xs font-medium ${card.tone === 'warning' ? 'text-warning' : card.tone === 'accent' ? 'text-accent' : 'text-primary'}`}>
-                  {card.change}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Container>
-    </section>
+      {/* Tiles — 1 column on narrow/mobile, 2 on small screens, 3 only once
+          there's genuinely enough room. Each tile can shrink to ~140px
+          without clipping: text wraps instead of being cut off, and nothing
+          uses whitespace-nowrap on the amount or note. */}
+      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {TILES.map((tile) => (
+          <div key={tile.id} className="min-w-0 rounded-xl border border-line bg-surface-alt p-4">
+            <span className={`inline-grid h-9 w-9 shrink-0 place-items-center rounded-lg border text-base ${TONE_ICON_BOX[tile.tone]}`}>
+              {tile.icon}
+            </span>
+            <p className="mt-3 text-xs text-slate">{tile.label}</p>
+            <p className="mt-1 break-words font-display text-xl font-semibold text-ink">{formatNaira(tile.amount)}</p>
+            <p className={`mt-1.5 break-words text-xs font-medium ${TONE_NOTE_TEXT[tile.tone]}`}>{tile.note}</p>
+          </div>
+        ))}
+      </div>
+    </Card>
   );
 }

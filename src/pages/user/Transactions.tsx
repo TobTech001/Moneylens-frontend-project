@@ -155,8 +155,13 @@ export default function Transactions() {
     setToastMessage('Transaction deleted.');
   }
 
-  function handleImported(count: number) {
-    setToastMessage(count === 1 ? '1 transaction imported.' : `${count} transactions imported.`);
+ function handleImported(newTransactions: Transaction[]) {
+  setTransactions((prev) => [...newTransactions, ...prev]);
+  setToastMessage(
+    newTransactions.length === 1
+      ? '1 transaction imported.'
+      : `${newTransactions.length} transactions imported.`,
+  );
   }
 
   return (
