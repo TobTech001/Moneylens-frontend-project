@@ -31,7 +31,7 @@ export default function Navbar() {
     >
       <Container className={`flex items-center justify-between transition-[height] duration-300 ${scrolled ? 'h-14' : 'h-16'}`}>
         <a href="#home" className="flex items-center gap-2 shrink-0" onClick={() => setOpen(false)}>
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent text-sm">💰</span>
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent text-sm">M</span>
           <span className="font-display text-lg font-semibold tracking-tight text-ink">MoneyLens</span>
         </a>
 
